@@ -1,0 +1,226 @@
+@media screen and (max-width: 767px){
+    body {
+        border: 10px solid #66a7d2;
+    }
+}
+
+@font-face {
+    font-family: 'なつめ';
+    src: url('natumemozi-o.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+body,input,button{
+    font-family: 'なつめ', sans-serif;
+}
+
+body{
+    color: #df67bd;
+    /*color: #66a7d2;*/
+    /*color: #8653cd;*/
+    background-color: rgb(3, 2, 22);
+    /*text-shadow: 0px 0px 3px rgba(233, 250, 255, 0.4);*/
+
+    padding: 1.2rem;
+    border:2px solid #8653cd;
+    box-sizing:border-box;
+    border-radius: 3px;
+
+}
+
+#title{
+    font-size: 2rem;
+    margin: 0 0 1.2rem 0;
+    display: inline-block;
+}
+
+.message {
+  position: fixed;
+  top: -60px; /* 最初は画面外に隠す */
+  right: -5%;
+  transform: translateX(-50%);
+  background-color: rgb(21, 19, 43);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  opacity: 0;
+  transition: all 0.5s ease; /* スライド＆フェード用 */
+  z-index: 1000;
+}
+.message.show {
+    top: 10px;
+    opacity: 1;
+}
+
+#expense-form label,
+#expense-form input,
+#expense-form button {
+    display: inline;       /* ブロック要素化して縦に並べる */
+    margin-bottom: 0.8em; /* 下に隙間を作る */
+}
+
+label{
+    color: #66a7d2;
+}
+input{
+    color: #FFF !important;
+    background-color: rgb(13, 11, 35);
+    border: 0;
+    border-right: 1.5px #514e67 solid;
+    border-bottom: 1.5px #514e67 solid;
+}
+
+
+#sub{
+    color: #df67bd;
+    background-color: rgb(13, 11, 35);
+    border-top: 2px #514e67 solid;
+    border-left: 2px #514e67 solid;
+    border-right: 2px #201f31 solid;
+    border-bottom: 2px #201f31 solid;
+    padding: 0.2rem 0.4rem;
+}
+
+
+#expense-list{
+    padding: 0;
+    margin: 0;
+}
+.box {
+    position: relative;
+    margin: 2em 0;
+    padding: 0.5em;
+    border: solid 1px #66a7d2;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.box-title {
+    position: absolute;
+    display: inline-block;
+    top: -13px;
+    left: 10px;
+    padding: 0 9px;
+    line-height: 1;
+    font-size: 19px;
+    background: rgb(3, 2, 22);
+    color: #95ccff;
+}
+.box ul,li {
+    list-style-type: none;
+    margin: 0; 
+    padding: 0;
+    border-bottom: 1px solid #8653cd20;
+}
+.box ul,li:last-child {
+  border-bottom: none;
+}
+.box li {
+    padding-top: 0.7rem;
+    padding-bottom: 1rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr; /* 左側広め・右側狭め */
+  grid-template-rows: 1fr 1fr 1fr;
+  align-items: center;
+  padding: 8px 0.5rem;
+}
+
+/* 左上（項目名） */
+.top-left {
+  grid-column: 1;
+  grid-row: 1;
+    color: #df67bd;
+  font-size: 1.1rem;
+}
+
+/* 左下（日付） */
+.bottom-left {
+  grid-column: 1;
+  grid-row: 2;
+  color: #df67bd;
+  opacity: 0.9;
+  font-size: 0.9rem;
+}
+
+/* 右（金額） */
+.right {
+  grid-column: 2;
+  grid-row: 1 / span 2; /* 上下にまたがる */
+  text-align: right;
+  font-size: 1.5rem;
+  color:#df67bd;
+}
+
+/* 編集・削除ボタン */
+.buttons {
+  grid-column: 2;
+  grid-row: 3;
+  display: flex;
+  justify-content: flex-end;
+  gap: 6px;
+  padding-top: 0.3rem;
+}
+.edit-btn,
+.delete-btn,
+.delete-all-btn{
+    color: #95ccffe1;
+    background-color: rgb(13, 11, 35);
+    border-top: 2px #514e67 solid;
+    border-left: 2px #514e67 solid;
+    border-right: 2px #201f31 solid;
+    border-bottom: 2px #201f31 solid;
+    padding: 0.2rem 0.4rem;
+    white-space: nowrap;
+    width: 2.2rem;
+    height: auto;
+    font-size: 0.6rem;
+    text-align: center;
+}
+
+.box .total{
+    border-top: 1px dashed #8653cde0; 
+    padding: 0.7rem 0.3rem 0.2rem;
+    text-align: end;
+    font-size: x-large;
+}
+.box .total .label {
+    opacity: 0.9;
+  font-size: 1.1rem;
+}
+.box .total .label2 {
+  font-size: 1.2rem;
+}
+
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+    -webkit-text-fill-color: #fff !important;
+    -webkit-box-shadow: 0 0 0px 1000px rgb(13, 11, 35) inset !important;
+    box-shadow: 0 0 0px 1000px rgb(13, 11, 35) inset !important;
+}
+input:focus,
+textarea:focus,
+select:focus {
+    color: #fff;
+    box-shadow: none;
+}
+input:-moz-autofill {
+    color: #fff !important;
+    box-shadow: 0 0 0px 1000px rgb(13, 11, 35) inset !important;
+}
+
+small{
+    font-size: 0.8rem;
+}
