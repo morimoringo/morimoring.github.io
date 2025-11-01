@@ -1,5 +1,15 @@
-// main.js
+function escapeHTML(str) {
+  if (str == null) return '';        // null や undefined のとき空文字
+  return String(str)                 // number でも確実に文字列化
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
 
+
+// main.js
 const form = document.getElementById('expense-form');
 const nameInput = document.getElementById('name');
 const amountInput = document.getElementById('amount');
@@ -16,19 +26,24 @@ let editingId = null; // 今編集中のID
 // 初期表示
 renderList();
 
-// 入力後ラベルカラー変更
-const inputs = document.querySelectorAll('#expense-form input');
 
-inputs.forEach(input => {
-    input.addEventListener('input', () => {
-        const label = input.previousElementSibling; // inputの前のラベルを取得
-        if (input.value) {
-            label.style.color = "#df67bd" ; // 入力されていれば色を変える
-        } else {
-            label.style.color = ''; // 空なら元の色に戻す
-        }
+// row, row2 両方の中の input を対象にする
+
+document.querySelectorAll('.row input, .row2 input').forEach(input => {
+  input.addEventListener('input', () => {
+    const colon = input.previousElementSibling;
+    const label = colon ? colon.previousElementSibling : null;
+    const labelParts = [label, colon].filter(Boolean);
+
+    // 空白を除いた文字列があるか判定（スペースだけでも空扱いにする）
+    const hasValue = input.value.trim().length > 0;
+
+    labelParts.forEach(el => {
+      el.style.color = hasValue ? '#df67bd' : '';
     });
+  });
 });
+
 
 
 // フォーム送信時
@@ -40,7 +55,7 @@ form.addEventListener('submit', (e) => {
     const endDate = endDateInput.value || null;
 
     if (!name || !amount || !firstDate) {
-        alert('必要な項目を入力してくれ。');
+        alert('必要な項目を入力してね');
         return;
     }
 
@@ -80,9 +95,13 @@ form.addEventListener('submit', (e) => {
         message.classList.remove('show');
     }, 2000);
 
-    // リセットとラベル色リセット
+    // フォームをリセット
     form.reset();
-    form.querySelectorAll('label').forEach(label => label.style.color = '');
+
+    // ラベルとコロンの色を元に戻す
+    form.querySelectorAll('.la, .co, .lala, .coco').forEach(el => {
+    el.style.color = '';
+    });
 });
 
 
@@ -160,9 +179,9 @@ function renderList() {
             li.classList.add('grid');
 
             li.innerHTML = `
-                <span class="top-left">${expense.name}</span>
-                <span class="bottom-left">毎月${day}日</span>
-                <span class="right">${expense.amount.toLocaleString()}<small>円</small></span>
+                <span class="top-left">${escapeHTML(expense.name)}</span>
+                <span class="bottom-left">毎月${escapeHTML(day)}日</span>
+                <span class="right">${escapeHTML(expense.amount.toLocaleString())}<small>円</small></span>
             `;
 
             // ボタン用のdiv
@@ -247,11 +266,9 @@ function renderList() {
 
         const totalDiv = document.createElement('div');
         totalDiv.className = 'total';
-        totalDiv.innerHTML = `<span class="label">合計：</span>${total.toLocaleString()}円`;
+        totalDiv.innerHTML = `<span class="label1">合計 ：</span>${escapeHTML(total.toLocaleString())}<span class="label2"> 円</span>`;
         box.appendChild(totalDiv);
 
         list.appendChild(box);
     });
 }
-
-
