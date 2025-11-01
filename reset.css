@@ -44,3 +44,14 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+
+
+input,
+button,
+select,
+textarea {
+  -webkit-appearance: none; /* Safari・iOSの独自スタイル無効化 */
+  appearance: none;
+  border-radius: 0; /* 角丸解除 */
+}
+
