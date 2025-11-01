@@ -45,7 +45,6 @@ table {
   border-spacing: 0;
 }
 
-
 input,
 button,
 select,
@@ -55,3 +54,26 @@ textarea {
   border-radius: 0; /* 角丸解除 */
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+    -webkit-text-fill-color: #fff !important;
+    -webkit-box-shadow: 0 0 0px 1000px rgb(13, 11, 35) inset !important;
+    box-shadow: 0 0 0px 1000px rgb(13, 11, 35) inset !important;
+}
+input:focus,
+textarea:focus,
+select:focus {
+    color: #fff;
+    box-shadow: none;
+}
+input:-moz-autofill {
+    color: #fff !important;
+    box-shadow: 0 0 0px 1000px rgb(13, 11, 35) inset !important;
+}
